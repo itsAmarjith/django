@@ -1,0 +1,16 @@
+{% extends "myapp/base.html" %}
+{% block title %}{{ event.name }}{% endblock %}
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'event-list' %}">Events</a> / {{ event.name }}</p>
+<section class="detail-heading">
+    <div><p class="eyebrow"><a href="{% url 'production-detail' event.production_id %}">{{ event.production.name }}</a></p><h1>{{ event.name }}</h1><span class="badge">{{ event.get_status_display }}</span></div>
+    <div class="actions"><a class="button button-secondary" href="{% url 'event-update' event.pk %}">Edit event</a><a class="button button-danger" href="{% url 'event-delete' event.pk %}">Delete</a></div>
+</section>
+<section class="panel detail-panel"><p class="eyebrow">EVENT DETAILS</p><dl>
+    <div><dt>Event type</dt><dd>{{ event.get_category_display }}</dd></div>
+    <div><dt>Date</dt><dd>{{ event.event_date|date:"F j, Y" }}</dd></div>
+    <div><dt>Start time</dt><dd>{{ event.start_time|time:"g:i A" }}</dd></div>
+    <div><dt>Venue</dt><dd>{{ event.venue }}</dd></div>
+    <div><dt>Expected attendees</dt><dd>{{ event.attendees }}</dd></div>
+</dl>{% if event.notes %}<h3>Notes</h3><p class="body-copy">{{ event.notes|linebreaksbr }}</p>{% endif %}</section>
+{% endblock %}

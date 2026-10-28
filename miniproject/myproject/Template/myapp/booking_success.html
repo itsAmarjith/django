@@ -1,0 +1,13 @@
+{% extends "myapp/base.html" %}
+{% block title %}Request received{% endblock %}
+{% block content %}
+<section class="confirm-wrap">
+    <div class="panel confirm-panel">
+        <span class="success-icon">✓</span>
+        <p class="eyebrow">REQUEST RECEIVED</p>
+        <h1>Thanks for sharing your plans!</h1>
+        <p class="muted">Your event booking request has been sent to our team. We’ll review your details and get in touch with you.</p>
+        <div class="actions"><a class="button" href="{% url 'booking-create' %}">Back to booking page</a></div>
+    </div>
+</section>
+{% endblock %}

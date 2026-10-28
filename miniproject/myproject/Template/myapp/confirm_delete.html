@@ -1,0 +1,15 @@
+{% extends "myapp/base.html" %}
+{% block title %}Confirm deletion{% endblock %}
+{% block content %}
+<section class="confirm-wrap">
+    <form method="post" class="panel confirm-panel">
+        {% csrf_token %}
+        <span class="warning-icon">!</span>
+        <p class="eyebrow">PLEASE CONFIRM</p>
+        <h1>Delete “{{ object }}”?</h1>
+        <p class="muted">This action cannot be undone.</p>
+        {% if object.client %}<p class="muted">Productions with scheduled events cannot be deleted.</p>{% endif %}
+        <div class="actions"><a class="button button-secondary" href="{{ cancel_url }}">Cancel</a><button class="button button-danger" type="submit">Delete</button></div>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student Table</title>
+    <style>
+        table {
+            width: 60%;
+            margin: 40px auto;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align:center;">Student Details</h2>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Place</th>
+            <th>College</th>
+        </tr>
+
+        <tr>
+            <td>John</td>
+            <td>21</td>
+            <td>john@example.com</td>
+            <td>Kochi</td>
+            <td>ABC College</td>
+        </tr>
+
+        <tr>
+            <td>Alice</td>
+            <td>22</td>
+            <td>alice@example.com</td>
+            <td>Trivandrum</td>
+            <td>XYZ College</td>
+        </tr>
+
+    </table>
+    {% endblock %}
+
+    
+</body>
+</html>

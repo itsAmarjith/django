@@ -1,0 +1,32 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Event Booking{% endblock %} | AJ Productions</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/site.css' %}">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="{% url 'booking-create' %}"><span class="brand-mark">AJ</span> AJ Productions</a>
+        <a class="button button-small" href="{% url 'booking-create' %}">Book your event</a>
+    </header>
+    <main class="page">
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}<div class="message {{ message.tags }}">{{ message }}</div>{% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer">
+        <a class="footer-brand" href="{% url 'booking-create' %}">AJ Productions</a>
+        <div class="footer-contact">
+            <a href="mailto:jithuaji066@gmail.com">jithuaji066@gmail.com</a>
+            <a href="tel:+917907443329">7907443329</a>
+            <address>Thanal Mullickala, Thevalakkara PO,<br>Kollam 690524</address>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{% extends "myapp/base.html" %}
+{% block title %}Overview{% endblock %}
+{% block content %}
+<section class="page-heading">
+    <div><p class="eyebrow">YOUR WORKSPACE</p><h1>Production overview</h1><p class="muted">Plan weddings, concerts, corporate events, and more.</p></div>
+    <a class="button" href="{% url 'booking-create' %}">＋ Book an event</a>
+</section>
+<section class="booking-banner">
+    <div><p class="eyebrow">PLANNING SOMETHING SPECIAL?</p><h2>Tell us about your event</h2><p>Share your date, guest count, and event type to get started.</p></div>
+    <a class="button" href="{% url 'booking-create' %}">Request a booking →</a>
+</section>
+<section class="stats">
+    <article class="stat-card"><span class="stat-label">Total productions</span><strong>{{ production_count }}</strong><a href="{% url 'production-list' %}">View all →</a></article>
+    <article class="stat-card"><span class="stat-label">In production</span><strong>{{ active_production_count }}</strong><span class="muted">Currently underway</span></article>
+    <article class="stat-card"><span class="stat-label">Upcoming events</span><strong>{{ upcoming_event_count }}</strong><a href="{% url 'event-list' %}">View schedule →</a></article>
+    <article class="stat-card"><span class="stat-label">New booking requests</span><strong>{{ new_booking_count }}</strong><a href="{% url 'admin:myapp_eventbooking_changelist' %}">Manage in admin →</a></article>
+</section>
+<section class="content-grid">
+    <article class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">SCHEDULE</p><h2>Upcoming events</h2></div><a class="text-link" href="{% url 'event-list' %}">All events →</a></div>
+        {% for event in upcoming_events %}
+            <a class="list-row" href="{% url 'event-detail' event.pk %}">
+                <span class="date-tile"><strong>{{ event.event_date|date:"d" }}</strong><small>{{ event.event_date|date:"M" }}</small></span>
+                <span class="row-main"><strong>{{ event.name }}</strong><small>{{ event.production.name }} · {{ event.venue }}</small></span>
+                <span class="row-meta">{{ event.start_time|time:"g:i A" }}</span>
+            </a>
+        {% empty %}
+            <div class="empty-state"><p>No upcoming events yet.</p><a href="{% url 'event-create' %}">Schedule your first event</a></div>
+        {% endfor %}
+    </article>
+    <article class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">PROJECTS</p><h2>Recent productions</h2></div><a class="text-link" href="{% url 'production-list' %}">All productions →</a></div>
+        {% for production in recent_productions %}
+            <a class="list-row" href="{% url 'production-detail' production.pk %}">
+                <span class="avatar">{{ production.name|first|upper }}</span>
+                <span class="row-main"><strong>{{ production.name }}</strong><small>{{ production.client }}</small></span>
+                <span class="badge">{{ production.get_status_display }}</span>
+            </a>
+        {% empty %}
+            <div class="empty-state"><p>No productions added yet.</p><a href="{% url 'production-create' %}">Create a production</a></div>
+        {% endfor %}
+    </article>
+</section>
+{% endblock %}

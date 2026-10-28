@@ -1,0 +1,23 @@
+{% extends "myapp/base.html" %}
+{% block title %}Events{% endblock %}
+{% block content %}
+<section class="page-heading">
+    <div><p class="eyebrow">SCHEDULE</p><h1>Events</h1><p class="muted">Plan and track every event across your productions.</p></div>
+    <a class="button" href="{% url 'event-create' %}">＋ New event</a>
+</section>
+<section class="panel table-panel"><div class="table-wrap"><table>
+    <thead><tr><th>Event</th><th>Type</th><th>Production</th><th>Date &amp; time</th><th>Venue</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    {% for event in events %}
+        <tr>
+            <td><a class="table-title" href="{% url 'event-detail' event.pk %}">{{ event.name }}</a></td>
+            <td>{{ event.get_category_display }}</td>
+            <td><a class="text-link" href="{% url 'production-detail' event.production_id %}">{{ event.production.name }}</a></td>
+            <td>{{ event.event_date|date:"M j, Y" }} · {{ event.start_time|time:"g:i A" }}</td>
+            <td>{{ event.venue }}</td><td><span class="badge">{{ event.get_status_display }}</span></td>
+            <td><a class="text-link" href="{% url 'event-detail' event.pk %}">Open →</a></td>
+        </tr>
+    {% empty %}<tr><td colspan="7"><div class="empty-state"><p>No events scheduled yet.</p><a href="{% url 'event-create' %}">Add an event</a></div></td></tr>{% endfor %}
+    </tbody>
+</table></div></section>
+{% endblock %}

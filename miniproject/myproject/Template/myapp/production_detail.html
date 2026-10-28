@@ -1,0 +1,26 @@
+{% extends "myapp/base.html" %}
+{% block title %}{{ production.name }}{% endblock %}
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'production-list' %}">Productions</a> / {{ production.name }}</p>
+<section class="detail-heading">
+    <div><p class="eyebrow">{{ production.client }}</p><h1>{{ production.name }}</h1><span class="badge">{{ production.get_status_display }}</span></div>
+    <div class="actions"><a class="button button-secondary" href="{% url 'production-update' production.pk %}">Edit production</a><a class="button button-danger" href="{% url 'production-delete' production.pk %}">Delete</a></div>
+</section>
+<section class="detail-grid">
+    <article class="panel detail-panel"><p class="eyebrow">PRODUCTION DETAILS</p><dl>
+        <div><dt>Start date</dt><dd>{{ production.start_date|date:"F j, Y" }}</dd></div>
+        <div><dt>End date</dt><dd>{{ production.end_date|date:"F j, Y" }}</dd></div>
+        <div><dt>Budget</dt><dd>${{ production.budget|floatformat:2 }}</dd></div>
+    </dl>{% if production.description %}<h3>Notes</h3><p class="body-copy">{{ production.description|linebreaksbr }}</p>{% endif %}</article>
+    <article class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">SCHEDULE</p><h2>Events</h2></div><a class="button button-small" href="{% url 'event-create' %}">＋ Add event</a></div>
+        {% for event in production.events.all %}
+            <a class="list-row" href="{% url 'event-detail' event.pk %}">
+                <span class="date-tile"><strong>{{ event.event_date|date:"d" }}</strong><small>{{ event.event_date|date:"M" }}</small></span>
+                <span class="row-main"><strong>{{ event.name }}</strong><small>{{ event.venue }} · {{ event.start_time|time:"g:i A" }}</small></span>
+                <span class="badge">{{ event.get_status_display }}</span>
+            </a>
+        {% empty %}<div class="empty-state"><p>No events scheduled for this production.</p></div>{% endfor %}
+    </article>
+</section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "myapp/base.html" %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block content %}
+<p class="breadcrumbs"><a href="{% url 'dashboard' %}">Overview</a> / {{ page_title }}</p>
+<section class="form-layout">
+    <div><p class="eyebrow">WORKSPACE</p><h1>{{ page_title }}</h1><p class="muted">Add the details below to keep your schedule up to date.</p></div>
+    <form method="post" class="panel form-panel">
+        {% csrf_token %}
+        {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+        {% for field in form %}
+            <div class="form-field{% if field.field.widget.input_type == 'hidden' %} hidden-field{% endif %}">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}<small class="help-text">{{ field.help_text }}</small>{% endif %}
+                {% for error in field.errors %}<small class="field-error">{{ error }}</small>{% endfor %}
+            </div>
+        {% endfor %}
+        <div class="actions form-actions"><a class="button button-secondary" href="{{ cancel_url }}">Cancel</a><button class="button" type="submit">Save changes</button></div>
+    </form>
+</section>
+{% endblock %}

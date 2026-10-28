@@ -1,0 +1,45 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+{% block title %}Book an event{% endblock %}
+{% block content %}
+<section class="booking-hero">
+    <div class="booking-intro">
+        <p class="eyebrow"><span class="eyebrow-line"></span> EVENTS, THOUGHTFULLY MADE</p>
+        <h1>Big moments.<br><em>Beautifully</em> done.</h1>
+        <p class="intro-copy">A celebration should feel like you. Tell us what you're dreaming up and we'll take care of the details.</p>
+        <figure class="photo-collage">
+            <img class="main-event-photo" src="{% static 'myapp/images/live-music-concert.jpg' %}" alt="Crowd enjoying a live music concert">
+            <span class="photo-caption main-photo-caption">LIVE MUSIC <span>01</span></span>
+            <div class="wedding-photo-card">
+                <img src="{% static 'myapp/images/wedding-celebration.jpg' %}" alt="Bride and groom celebrating their wedding">
+                <span class="photo-caption wedding-caption">WEDDINGS <span>02</span></span>
+            </div>
+        </figure>
+        <div class="event-types" aria-label="Events we plan">
+            <span>Weddings</span><span>Live music</span><span>Corporate</span><span>Celebrations</span>
+        </div>
+    </div>
+    <form method="post" class="panel form-panel">
+        {% csrf_token %}
+        <div class="form-title">
+            <span class="form-step">01 <span>—</span> 02</span>
+            <p class="eyebrow">LET'S GET STARTED</p>
+            <h2>Tell us about<br>your event.</h2>
+            <p class="muted">Share a few details. We’ll be in touch soon.</p>
+        </div>
+        {% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}
+        <div class="booking-fields">
+        {% for field in form %}
+            <div class="form-field field-{{ field.name }}">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}<small class="help-text">{{ field.help_text }}</small>{% endif %}
+                {% for error in field.errors %}<small class="field-error">{{ error }}</small>{% endfor %}
+            </div>
+        {% endfor %}
+        </div>
+        <div class="form-actions"><button class="button" type="submit">Send enquiry <span aria-hidden="true">↗</span></button></div>
+        <p class="privacy-note">No commitment, just the beginning of something special.</p>
+    </form>
+</section>
+{% endblock %}

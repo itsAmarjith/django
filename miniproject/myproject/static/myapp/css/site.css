@@ -1,0 +1,106 @@
+:root {
+    color-scheme: light;
+    --ink: #292b28;
+    --muted: #77766f;
+    --paper: #f7f5f0;
+    --white: #fffefa;
+    --line: #e8e4dc;
+    --olive: #596c54;
+    --olive-dark: #43533f;
+    --terra: #ba775f;
+}
+
+* { box-sizing: border-box; }
+html { min-width: 320px; background: var(--paper); }
+body { margin: 0; color: var(--ink); background: var(--paper); font: 15px/1.6 "Aptos", "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.topbar { height: 78px; display: flex; align-items: center; justify-content: space-between; padding: 0 max(calc((100vw - 1300px) / 2), 6vw); border-bottom: 1px solid #e8e4dbaa; background: #f7f5f0; }
+.brand { display: flex; align-items: center; gap: 12px; font: 600 16px/1 "Palatino Linotype", "Book Antiqua", Georgia, serif; letter-spacing: .3px; }
+.brand-mark { width: 35px; height: 35px; display: grid; place-items: center; border: 1px solid #bdc3b4; border-radius: 50%; color: var(--olive); font: italic 13px "Palatino Linotype", Georgia, serif; }
+.topbar .button { min-height: 39px; padding: 0 17px; border: 1px solid #68775e; border-radius: 3px; color: var(--olive-dark); font-size: 11px; }
+.topbar .button:hover { background: var(--olive); color: white; }
+.page { min-height: calc(100vh - 146px); max-width: 1300px; margin: 0 auto; padding: 48px 6vw 76px; }
+.booking-hero { display: grid; grid-template-columns: minmax(0, .92fr) minmax(400px, .82fr); align-items: center; gap: clamp(44px, 8vw, 122px); max-width: 1080px; margin: 0 auto; }
+.booking-intro { padding-top: 12px; }
+.eyebrow { margin: 0 0 18px; color: var(--olive); font-size: 9px; font-weight: 700; letter-spacing: 2px; }
+.eyebrow-line { display: inline-block; width: 22px; height: 1px; margin: 0 8px 3px 0; background: var(--terra); }
+.booking-intro h1 { margin: 0; font: 400 clamp(44px, 5.4vw, 68px)/1.08 "Palatino Linotype", "Book Antiqua", Georgia, serif; letter-spacing: -1.6px; }
+.booking-intro h1 em { color: var(--terra); font-weight: 400; }
+.intro-copy { max-width: 390px; margin: 20px 0 25px; color: var(--muted); font-size: 13px; line-height: 1.9; }
+.photo-collage { position: relative; isolation: isolate; aspect-ratio: 1.48; margin: 27px 0 19px; }
+.photo-collage::before { position: absolute; z-index: -1; top: -10px; right: -10px; width: 44%; height: 60%; border: 1px solid #cdb5a2; content: ""; }
+.main-event-photo { display: block; width: 100%; height: 100%; border-radius: 2px; object-fit: cover; object-position: center 46%; box-shadow: 0 14px 36px #433a3021; }
+.photo-caption { display: flex; align-items: center; justify-content: space-between; gap: 18px; color: white; font-size: 8px; font-weight: 600; letter-spacing: 1.5px; text-shadow: 0 1px 5px #0008; }
+.main-photo-caption { position: absolute; right: 15px; bottom: 14px; left: 15px; }
+.wedding-photo-card { position: absolute; right: -16px; bottom: 17%; width: 39%; height: 47%; padding: 5px; background: var(--white); box-shadow: 0 9px 26px #28201840; transform: rotate(3deg); }
+.wedding-photo-card img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.wedding-caption { position: absolute; right: 12px; bottom: 12px; left: 12px; font-size: 7px; }
+.event-types { display: flex; flex-wrap: wrap; gap: 7px 17px; padding-top: 2px; }
+.event-types span { color: #65665b; font: italic 13px "Palatino Linotype", "Book Antiqua", Georgia, serif; }
+.event-types span:not(:last-child)::after { margin-left: 17px; color: #b6a99b; content: "·"; }
+.form-panel { padding: clamp(25px, 3.2vw, 40px); border: 1px solid #eae6de; border-radius: 3px; background: var(--white); box-shadow: 0 20px 55px #4c443612; }
+.form-title { position: relative; margin-bottom: 24px; padding-bottom: 19px; border-bottom: 1px solid var(--line); }
+.form-title .eyebrow { margin-bottom: 8px; }
+.form-title h2 { margin: 0 0 6px; font: 400 30px/1.16 "Palatino Linotype", "Book Antiqua", Georgia, serif; letter-spacing: -.3px; }
+.form-title .muted { margin: 0; color: var(--muted); font-size: 11px; }
+.form-step { position: absolute; top: 3px; right: 0; color: #aaa59b; font-size: 9px; letter-spacing: 1.2px; }
+.form-step span { padding: 0 3px; color: var(--terra); }
+.booking-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0 13px; }
+.form-field { min-width: 0; margin-bottom: 14px; }
+.field-customer_name, .field-email, .field-phone, .field-category, .field-event_date, .field-guest_count, .field-venue, .field-details { grid-column: span 1; }
+.field-venue, .field-details { grid-column: 1 / -1; }
+.form-field label { display: block; margin-bottom: 5px; color: #56564f; font-size: 10px; font-weight: 600; letter-spacing: .25px; }
+.form-field input, .form-field select, .form-field textarea { display: block; width: 100%; min-height: 40px; padding: 9px 10px; border: 1px solid #e4e0d8; border-radius: 2px; outline: none; background: #fffefa; color: var(--ink); font: 12px "Aptos", "Segoe UI", sans-serif; transition: border-color .2s, box-shadow .2s, background .2s; }
+.form-field input::placeholder, .form-field textarea::placeholder { color: #aaa69f; }
+.form-field textarea { min-height: 76px; resize: vertical; }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: #83917c; background: white; box-shadow: 0 0 0 3px #596c5414; }
+.form-errors, .field-error { color: #a64e43; font-size: 10px; }
+.field-error { display: block; margin-top: 4px; }
+.form-actions { margin-top: 3px; }
+.form-actions .button { width: 100%; min-height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; border: 1px solid var(--olive); border-radius: 2px; background: var(--olive); color: white; font: 600 11px "Aptos", "Segoe UI", sans-serif; letter-spacing: .4px; cursor: pointer; transition: background .2s, border-color .2s; }
+.form-actions .button:hover { border-color: var(--olive-dark); background: var(--olive-dark); }
+.form-actions .button span { font-size: 17px; }
+.privacy-note { margin: 10px 0 0; color: #969188; font-size: 9px; text-align: center; }
+.footer { min-height: 92px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px max(calc((100vw - 1080px) / 2), 6vw); border-top: 1px solid #e8e4dbaa; color: #77766f; }
+.footer-brand { flex: 0 0 auto; color: var(--ink); font: 600 15px "Palatino Linotype", "Book Antiqua", Georgia, serif; }
+.footer-contact { display: flex; align-items: center; justify-content: flex-end; gap: clamp(14px, 3vw, 35px); font-size: 10px; }
+.footer-contact a { color: var(--olive-dark); }
+.footer-contact a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.footer-contact address { color: #77766f; font-size: 9px; font-style: normal; line-height: 1.5; }
+.messages { max-width: 1080px; margin: 0 auto 20px; }
+.message { padding: 12px 15px; border: 1px solid #e8c9c1; background: #fff7f4; color: #8e473d; font-size: 12px; }
+.confirm-wrap { max-width: 540px; margin: 70px auto; }
+.confirm-panel { padding: 42px; border: 1px solid var(--line); background: var(--white); text-align: center; }
+.confirm-panel h1 { font: 400 38px/1.16 "Palatino Linotype", "Book Antiqua", Georgia, serif; }
+.confirm-panel .muted { color: var(--muted); font-size: 13px; }
+.success-icon { width: 44px; height: 44px; display: grid; place-items: center; margin: 0 auto 19px; border: 1px solid #b9c9b3; border-radius: 50%; color: var(--olive); font-size: 20px; }
+.confirm-panel .actions { margin-top: 22px; }
+.confirm-panel .button { min-height: 43px; padding: 0 17px; border: 1px solid var(--olive); border-radius: 2px; background: var(--olive); color: white; font-size: 11px; }
+
+@media (max-width: 900px) {
+    .page { padding-top: 36px; }
+    .booking-hero { grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr); gap: 35px; }
+    .booking-intro h1 { font-size: clamp(43px, 6vw, 57px); }
+}
+
+@media (max-width: 700px) {
+    .topbar { height: 68px; padding: 0 20px; }
+    .page { padding: 28px 20px 48px; }
+    .booking-hero { max-width: 500px; grid-template-columns: 1fr; gap: 27px; }
+    .booking-intro { padding-top: 4px; }
+    .booking-intro h1 { font-size: clamp(47px, 12vw, 62px); }
+    .intro-copy { margin: 13px 0 18px; }
+    .photo-collage { margin: 22px 0 15px; }
+    .form-panel { padding: 25px 21px; }
+    .footer { align-items: flex-start; padding: 17px 20px; }
+    .footer-contact { flex-wrap: wrap; justify-content: flex-end; gap: 8px 18px; }
+}
+
+@media (max-width: 420px) {
+    .booking-fields { grid-template-columns: 1fr; }
+    .form-field { grid-column: 1 / -1; }
+    .brand { font-size: 14px; }
+    .topbar .button { padding: 0 10px; font-size: 10px; }
+    .footer { flex-direction: column; gap: 10px; }
+    .footer-contact { align-items: flex-start; flex-direction: column; }
+}
